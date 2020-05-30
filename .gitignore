@@ -1,0 +1,59 @@
+# General Rules
+~*
+*~
+*.java._trace
+*.bak
+**/target/
+
+# System Files
+**/.DS_Store
+**/Thumbs.db
+
+# H2
+*.mv.db
+
+# Data folder
+/data/
+/BiblioApi/data/
+/BiblioApi/logs/
+
+# Angular - compiled output
+/biblioUi/dist
+/biblioUi/tmp
+/biblioUi/out-tsc
+
+
+# Angular - dependencies
+/biblioUi/node_modules
+
+
+# Angular - Protobuf generated classes
+/biblioUi/src/app/messages
+
+
+# NetBeans
+**/nbproject
+**/nb-configuration.xml
+
+# IntelliJ
+.idea/
+*.iml
+**/.editorconfig
+
+# Eclise
+**/.classpath
+**/.project
+**/.settings
+
+# VS
+**/.factorypath
+
+# Misc
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings

@@ -1,0 +1,143 @@
+USE biblio;
+
+INSERT INTO biblio.biblio.tag (nom) VALUES ('bruxelles'), ('voiture'), ('police');
+
+
+
+Insert into biblio.pays (id_pays) VALUES ('Belgique'), ('France'),('Angleterre'), ('USA');
+
+
+Insert into biblio.adresse (rue, numero, cp, localite, id_pays) VALUES ('chemin vert', 68,'6120','Nalinnes','Belgique'),
+                                                                       ('rue de mencon',4,'à','bruti','Belgique'),
+                                                                       ('rue leopold',7,'6000','Charleroi','Belgique'),
+                                                                       ('Avenue grand',9,'6001','marcinelle','belgique'),
+                                                                       ('rue des sapins',18,'71270','mâcon','France'),
+                                                                       ('chemin vert', 8,'6120','Nalinnes','Belgique'),
+                                                                       ('rue de mencon',12,'à','bruti','Belgique'),
+                                                                       ('rue leopold',17,'6000','Charleroi','Belgique'),
+                                                                       ('Avenue grand',19,'6001','marcinelle','belgique'),
+                                                                       ('rue des sapins',108,'71270','mâcon','France');
+
+Insert into biblio.adresse (rue, numero, cp, localite, id_pays) VALUES ('rue des monts', 6,'6120','Nalinnes','Belgique');
+Insert into biblio.adresse (rue, numero, cp, localite, id_pays) VALUES ('place des haies', 16,'6120','Nalinnes','Belgique');
+Insert into biblio.adresse (rue, numero, cp, localite, id_pays) VALUES ('place du bultia', 17,'6120','Nalinnes','Belgique');
+
+
+
+insert into biblio.genre (nom) VALUES ('roman'),('jeunesse'),('educatif'),('loisir'),('science'),('langue'),('santé'),('arts');
+
+insert into biblio.auteur (nom, prenom, pseudo, id_pays) VALUES ('Lonchamp','Jacques',null,'France'),
+                                                                ('Richardson','Chris',null,'USA'),
+                                                                ('King','Stephen',null,'USA'),
+                                                                ('de saint-Exupery','Antoine',null,'France'),
+                                                                ('Poquelin','jean-baptiste','Molière','France'),
+                                                                ('Wohlleben','Peter',null,'France'),
+                                                                ('Collectif',null,null,'France'),
+                                                                ('Gillet','Christophe',null,'Belgique'),
+                                                                ('Thomas','Isabelle',null,'Belgique'),
+                                                                ('Bourbeau','Lise',null,'France'),
+                                                                ('De Prelle','Aude',null,'France'),
+                                                                ('De Prelle','Olivia',null,'France');
+
+insert into biblio.livre (titre, sous_titre, resume, nom)
+VALUES ('Le petit prince', null, 'Le narrateur est un aviateur ' +
+                                 'qui, à la suite d''une panne de moteur, a dû se poser en catastrophe dans le désert du Sahara et tente seul de réparer son avion.
+Le lendemain de son atterrissage forcé, il est réveillé par une petite voix qui lui demande : « S''il vous plaît… dessine-moi un mouton ! » ',
+        'roman');
+insert into biblio.livre (titre, sous_titre, resume, nom)
+VALUES ('Microservices Pattern', null,
+        'Microservices Patterns teaches enterprise developers and architects how to build applications with the microservice architecture. Rather than simply advocating for the use the microservice architecture, this clearly-written guide takes a balanced, pragmatic approach, exploring both the benefits and drawbacks. ',
+        'science');
+insert into biblio.livre (titre, sous_titre, resume, nom)
+VALUES ('Conception d''applications en java/jee', 'Principes, patterns et architecture', 'Cet ouvrage s’adresse principalement aux étudiants des cycles informatiques (IUT, LP, licence deuxième et troisième années) ainsi qu’aux élèves-ingénieurs en écoles d’informatique.
+La phase de conception logicielle répond aux questions « comment résout-on le problème ? comment satisfait-on les besoins ? ».',
+        'science');
+insert into biblio.livre (titre, sous_titre, resume, nom)
+VALUES ('Analyse pour le développement logiciel',
+        'Recueil et spécification',
+        'Le développement logiciel commence donc logiquement par un recueil des besoins ou des exigences, se poursuit par des phases de modélisation puis de conception avant de passer à la programmation et aux tests.',
+        'science');
+insert into biblio.livre (titre, sous_titre, resume, nom)
+VALUES ('Shining', null, 'Situé dans les montagnes Rocheuses, l''Overlook Palace passe pour être l''un des plus beaux lieux du monde. Confort, luxe, volupté. L''hiver, l''hôtel est fermé. Coupé du monde par le froid et la neige. Alors, seul l''habite un gardien. Celui qui a été engagé cet hiver-là s''appelle Jack Torrance : c''est un alcoolique, un écrivain raté, qui tente d''échapper au désespoir.',
+        'roman');
+insert into biblio.livre (titre, sous_titre, resume, nom)
+VALUES ('Dôme', null,
+        'La petite ville de Chester''s Mill, dans le Maine, est soudainement coupée du monde par un dôme transparent qui apparaît aux limites de la commune, causant plusieurs accidents mortels le temps que la situation soit connue. L''armée des États-Unis se révèle incapable de détruire ce dôme et les habitants de Chester''s Mill sont donc désormais livrés à eux-mêmes.',
+        'roman');
+insert into biblio.livre (titre, sous_titre, resume, nom)
+VALUES ('L''Avare', null,
+        'L''intrigue se passe à Paris. Harpagon est noble, riche et avare. Il a deux enfants : Élise qui est amoureuse de Valère, un gentilhomme napolitain au service de son père en qualité d''intendant, et Cléante qui souhaite épouser Mariane, une jeune femme vivant chez sa mère sans fortune.',
+        'arts');
+insert into biblio.livre (titre, sous_titre, resume, nom)
+VALUES ('La vie secrète des animaux', null, 'Le talent de conteur et de vulgarisateur de Peter Wohlleben continue d''opérer avec La Vie secrète des animaux. Les droits des animaux, la prise en compte de leur intelligence et, plus récemment, de leur conscience, la question de la souffrance animale, tous ces sujets sont au coeur de l''actualité.',
+        'loisir');
+insert into biblio.livre (titre, sous_titre, resume, nom)
+VALUES ('Le petit Larousse 2020', 'illustré', 'Le numéro 1 des dictionnaires illustrés (plus de 20 millions d''exemplaires vendus), Le dictionnaire le plus actuel, le plus plébiscité et le plus complet du marché. La référence des dictionnaires dans une version bi-média.',
+        'langue');
+insert into biblio.livre (titre, sous_titre, resume, nom)
+VALUES ('Atlas de base', '69 cartes à mettre entre toutes les mains',
+        'L''atlas de base a été pensé par une équipe d''inspecteurs, de pédagogues et d''enseignants sous le controle scientifique d''une géographe de l''UCL et d''un instituteur de terrain. Il propose 69 cartes savamment pensées pour aider les élèves à rester en phase avec ce monde qui change, qui bouge,...',
+        'educatif');
+insert into biblio.livre (titre, sous_titre, resume, nom)
+VALUES ('Dessine-moi ton pays', 'encyclopédie illustrée',
+        'Une magnifique encyclopédie illustrée par des dessins d''enfants du monde entier, qui apprend aux enfants de chez nous l''histoire, la culture et la politique de 56 pays. Les textes sont adaptés à un public de 8 à 12 ans.',
+        'jeunesse');
+insert into biblio.livre (titre, sous_titre, resume, nom)
+VALUES ('Les 5 blessures qui empêchent d''être soi-même', null,
+        'cinq blessures fondamentales à l''origine de nos maux qu''ils soient physiques, émotionnels ou mentaux. Lise Bourbeau, grâce à une description très détaillée de ces blessures, nous mène vers la voie de la guérison.',
+        'santé');
+
+
+
+insert into biblio.editeur (nom) VALUES ('Editions Gallimard');
+insert into biblio.editeur (nom) VALUES ('Manning');
+insert into biblio.editeur (nom) VALUES ('Dunod');
+insert into biblio.editeur (nom) VALUES ('Le livre de poche');
+insert into biblio.editeur (nom) VALUES ('Albin Michel');
+insert into biblio.editeur (nom) VALUES ('Magnard');
+insert into biblio.editeur (nom) VALUES ('Arenes');
+insert into biblio.editeur (nom) VALUES ('Larousse');
+insert into biblio.editeur (nom) VALUES ('Erasme editions');
+insert into biblio.editeur (nom) VALUES ('Caramel');
+insert into biblio.editeur (nom) VALUES ('Pocket');
+
+
+
+insert into biblio.edition (date_publi, ISBN, nbre_pages, image, id_livre, id_editeur) VALUES ('1999-02-23','2070408504',97,null,(SELECT id_livre from biblio.livre WHERE titre='Le petit prince'),(SELECT id_editeur from biblio.editeur WHERE nom='Editions Gallimard'));
+insert into biblio.edition (date_publi, ISBN, nbre_pages, image, id_livre, id_editeur) VALUES ('2018-10-01','9781617294549',520,null,(SELECT id_livre from biblio.livre WHERE titre='Microservices Pattern'),(SELECT id_editeur from biblio.editeur WHERE nom='Manning'));
+insert into biblio.edition (date_publi, ISBN, nbre_pages, image, id_livre, id_editeur) VALUES ('2019-01-01','9782100790456',448,null,(SELECT id_livre from biblio.livre WHERE titre='Conception d''applications en java/jee'),(SELECT id_editeur from biblio.editeur WHERE nom='Dunod'));
+insert into biblio.edition (date_publi, ISBN, nbre_pages, image, id_livre, id_editeur) VALUES ('2015-07-01','9782100727148',320,null,(SELECT id_livre from biblio.livre WHERE titre='Analyse pour le développement logiciel'),(SELECT id_editeur from biblio.editeur WHERE nom='Dunod'));
+insert into biblio.edition (date_publi, ISBN, nbre_pages, image, id_livre, id_editeur) VALUES ('2007-06-01','9782253151623',576,null,(SELECT id_livre from biblio.livre WHERE titre='Shining'),(SELECT id_editeur from biblio.editeur WHERE nom='Le livre de poche'));
+insert into biblio.edition (date_publi, ISBN, nbre_pages, image, id_livre, id_editeur) VALUES ('2011-08-01','2226220593',576,null,(SELECT id_livre from biblio.livre WHERE titre='Dôme'),(SELECT id_editeur from biblio.editeur WHERE nom='Albin Michel'));
+insert into biblio.edition (date_publi, ISBN, nbre_pages, image, id_livre, id_editeur) VALUES ('2011-03-01','9782210755581',144,null,(SELECT id_livre from biblio.livre WHERE titre='L''Avare'),(SELECT id_editeur from biblio.editeur WHERE nom='Magnard'));
+insert into biblio.edition (date_publi, ISBN, nbre_pages, image, id_livre, id_editeur) VALUES ('2018-11-06','9782352049777',335,null,(SELECT id_livre from biblio.livre WHERE titre='La vie secrète des animaux'),(SELECT id_editeur from biblio.editeur WHERE nom='Arenes'));
+insert into biblio.edition (date_publi, ISBN, nbre_pages, image, id_livre, id_editeur) VALUES ('2019-10-09','9782035938565',2048,null,(SELECT id_livre from biblio.livre WHERE titre='Le petit Larousse 2020'),(SELECT id_editeur from biblio.editeur WHERE nom='Larousse'));
+insert into biblio.edition (date_publi, ISBN, nbre_pages, image, id_livre, id_editeur) VALUES ('2017-04-26','9782874385766',109,null,(SELECT id_livre from biblio.livre WHERE titre='Atlas de base'),(SELECT id_editeur from biblio.editeur WHERE nom='Erasme editions'));
+insert into biblio.edition (date_publi, ISBN, nbre_pages, image, id_livre, id_editeur) VALUES ('2017-01-12','9789461983206',87,null,(SELECT id_livre from biblio.livre WHERE titre='Dessine-moi ton pays'),(SELECT id_editeur from biblio.editeur WHERE nom='Caramel'));
+insert into biblio.edition (date_publi, ISBN, nbre_pages, image, id_livre, id_editeur) VALUES ('2018-08-29','9782266229487',87,null,(SELECT id_livre from biblio.livre WHERE titre='Les 5 blessures qui empêchent d''être soi-même'),(SELECT id_editeur from biblio.editeur WHERE nom='Pocket'));
+
+
+insert into biblio.bibliotheque (nom, actif, id_adresse) VALUES ('bibliothèque du centre',1,(select id_adresse from biblio.adresse where rue='rue des monts' AND numero=6) );
+insert into biblio.bibliotheque (nom, actif, id_adresse) VALUES ('bibliothèque des haies',1,(select id_adresse from biblio.adresse where rue='place des haies' AND numero=16) );
+insert into biblio.bibliotheque (nom, actif, id_adresse) VALUES ('bibliothèque du bultia',1,(select id_adresse from biblio.adresse where rue='place du bultia' AND numero=17) );
+
+
+
+insert into biblio.exemplaire (etat, prix_achat, format, en_stock, actif, id_edition, id_bibliotheque, id_emprunteur, id_emprunt)
+VALUES ('neuf',36.49,'papier',1,1,(SELECT id_edition from biblio.edition where id_livre=(SELECT id_livre from biblio.livre WHERE titre='Le petit prince')),
+        (select id_bibliotheque from biblio.bibliotheque where nom='bibliothèque du centre'),null,null);
+insert into biblio.exemplaire (etat, prix_achat, format, en_stock, actif, id_edition, id_bibliotheque, id_emprunteur, id_emprunt)
+VALUES ('abimé',36.49,'papier',1,1,(SELECT id_edition from biblio.edition where id_livre=(SELECT id_livre from biblio.livre WHERE titre='Le petit prince')),
+        (select id_bibliotheque from biblio.bibliotheque where nom='bibliothèque des haies'),null,null);
+insert into biblio.exemplaire (etat, prix_achat, format, en_stock, actif, id_edition, id_bibliotheque, id_emprunteur, id_emprunt)
+VALUES ('perdu',36.49,'papier',1,1,(SELECT id_edition from biblio.edition where id_livre=(SELECT id_livre from biblio.livre WHERE titre='Le petit prince')),
+        (select id_bibliotheque from biblio.bibliotheque where nom='bibliothèque du bultia'),null,null);
+insert into biblio.exemplaire (etat, prix_achat, format, en_stock, actif, id_edition, id_bibliotheque, id_emprunteur, id_emprunt)
+VALUES ('neuf',45.49,'numérique',1,1,(SELECT id_edition from biblio.edition where id_livre=(SELECT id_livre from biblio.livre WHERE titre='Microservices Pattern')),
+        (select id_bibliotheque from biblio.bibliotheque where nom='bibliothèque du centre'),null,null);
+insert into biblio.exemplaire (etat, prix_achat, format, en_stock, actif, id_edition, id_bibliotheque, id_emprunteur, id_emprunt)
+VALUES ('abimé',45.49,'papier',1,1,(SELECT id_edition from biblio.edition where id_livre=(SELECT id_livre from biblio.livre WHERE titre='Microservices Pattern')),
+        (select id_bibliotheque from biblio.bibliotheque where nom='bibliothèque du centre'),null,null);
+
+
+

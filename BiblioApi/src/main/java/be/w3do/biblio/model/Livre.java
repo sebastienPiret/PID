@@ -1,6 +1,7 @@
 package be.w3do.biblio.model;
 
 import com.fasterxml.jackson.annotation.*;
+import org.springframework.hateoas.RepresentationModel;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
@@ -11,7 +12,7 @@ import java.util.List;
 // TODO https://openclassrooms.com/fr/courses/4668056-construisez-des-microservices/5123130-renvoyez-les-bons-codes-et-filtrez-les-reponses
 @Entity
 @Table(name="livre", schema = "biblio")
-public class Livre {
+public class Livre extends RepresentationModel {
     private int idLivre;
     @NotBlank(message = "ne peut pas être vide")
     @Max(value = 100, message = "ne doit pas dépasser 100 charactères")

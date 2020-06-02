@@ -1,0 +1,4 @@
+<button class="button" (click)="goBackToList()">Go back</button>
+<h5>{{selectedBook.titre}}</h5>
+<p *ngIf="isLogged">user loggé</p>
+<p *ngIf="!isLogged">user pas loggé</p>

@@ -63,17 +63,31 @@ public class JWTWebSecurityConfig extends WebSecurityConfigurerAdapter {
     // https://www.devglan.com/online-tools/bcrypt-hash-generator
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
-
+/*
         httpSecurity.authorizeRequests().antMatchers("/").permitAll();
 
-/*
-        httpSecurity
-                .authorizeRequests()
-                .anyRequest().authenticated()
-                .and().formLogin()
-                .permitAll();
-*/
+ */
 
+        httpSecurity
+                .headers()
+                .frameOptions()
+                .sameOrigin()
+                .and()
+                .cors()
+                .and()
+                .csrf().disable()
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .httpBasic()
+                .and()
+                .exceptionHandling()
+                .and()
+                .authorizeRequests().anyRequest().permitAll()
+                .and()
+                .addFilterBefore(
+                        jwtAuthenticationTokenFilter,
+                        UsernamePasswordAuthenticationFilter.class);
 /*
         httpSecurity
             .csrf().disable()

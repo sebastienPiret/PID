@@ -6,6 +6,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import java.util.Optional;
 
+
 @RepositoryRestResource(collectionResourceRel = "bibliothecaires", path = "bibliothecaires")
 public interface BibliothecaireRepository extends JpaRepository<Bibliothecaire, Long> {
 

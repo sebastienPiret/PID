@@ -1,6 +1,7 @@
 package be.w3do.biblio.config;
 
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -21,7 +22,9 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackages = { "be.w3do.biblio.repository" }, transactionManagerRef = "jpaTransactionManager")
+@EnableJpaRepositories(basePackages = { "be.w3do.biblio.repository" },
+        transactionManagerRef =
+        "jpaTransactionManager")
 public class HibernateConfig {
 
     @Bean
@@ -36,6 +39,7 @@ public class HibernateConfig {
     }
 
     @Bean
+    @Qualifier("test")
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         final LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
         emf.setDataSource(dataSource());
@@ -97,3 +101,4 @@ public class HibernateConfig {
     }
 
 }
+

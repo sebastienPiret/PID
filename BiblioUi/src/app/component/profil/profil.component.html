@@ -1,0 +1,27 @@
+<div class="tabs is-centered is-toggle">
+  <ul>
+    <li [ngClass]="{'is-active': isSelected(1)}" (click)="selectTab(1)"><a>Coordonnées</a></li>
+    <li [ngClass]="{'is-active': isSelected(2)}" (click)="selectTab(2)"><a>Commandes</a></li>
+    <li [ngClass]="{'is-active': isSelected(3)}" (click)="selectTab(3)"><a>Avis</a></li>
+    <li [ngClass]="{'is-active': isSelected(4)}" (click)="selectTab(4)"><a>Questions</a></li>
+  </ul>
+</div>
+
+<div class="content" *ngIf="user">
+  <div class="tab-content" *ngIf="selectedTab === 1">
+    <app-coordonnee [user]="user"></app-coordonnee>
+  </div>
+
+  <div class="tab-content" *ngIf="selectedTab === 2">
+    <p>Vos commandes</p>
+  </div>
+
+  <div class="tab-content" *ngIf="selectedTab === 3">
+    <p>Vos avis</p>
+  </div>
+
+  <div class="tab-content" *ngIf="selectedTab === 4">
+    <p>Vos questions</p>
+  </div>
+
+</div>

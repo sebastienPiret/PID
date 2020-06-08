@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 import { API_URL } from '../../app.constants';
 import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
+import {Observable} from 'rxjs';
 
 export const TOKEN = 'token';
 export const AUTHENTICATED_USER = 'authenticatedUser';
@@ -23,6 +24,7 @@ export class AuthentificationService {
 
   isUserLoggedIn() {
     const user = sessionStorage.getItem(AUTHENTICATED_USER);
+
     return !(user === null);
   }
 

@@ -17,7 +17,6 @@ export class BookListingComponent implements OnInit {
   }
 
   select(livre: LivreData) {
-      console.log('choosen boo= ' + livre.titre);
       this.selected.emit(livre);
   }
 }

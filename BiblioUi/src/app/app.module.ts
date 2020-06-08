@@ -8,10 +8,15 @@ import {AppRoutingModule} from './app-routing.module';
 import { MenuComponent } from './component/menu/menu.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {HttpInterceptorAuthService} from './service/auth/http-interceptor-auth.service';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { BookListingComponent } from './widget/book-listing/book-listing.component';
 import {RestangularModule} from 'ngx-restangular';
 import { BookSelectedComponent } from './widget/book-selected/book-selected.component';
+import { LayoutComponent } from './component/layout/layout.component';
+import {PageNotFoundComponent} from './component/page-not-found/page-not-found.component';
+import { RegisterComponent } from './component/register/register.component';
+import { ProfilComponent } from './component/profil/profil.component';
+import { CoordonneeComponent } from './component/profil/coordonnee/coordonnee.component';
 
 export function RestAngularConfigFactory(RestangularProvider) {
   RestangularProvider.setBaseUrl('http://localhost:8080');
@@ -40,14 +45,20 @@ export function RestAngularConfigFactory(RestangularProvider) {
     LoginComponent,
     MenuComponent,
     BookListingComponent,
-    BookSelectedComponent
+    BookSelectedComponent,
+    PageNotFoundComponent,
+    LayoutComponent,
+    RegisterComponent,
+    ProfilComponent,
+    CoordonneeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    RestangularModule.forRoot(RestAngularConfigFactory)
+    RestangularModule.forRoot(RestAngularConfigFactory),
+    FormsModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

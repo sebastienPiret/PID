@@ -1,0 +1,21 @@
+<section class="hero is-info is-bold ">
+  <div class="hero-head is-fluid">
+    <app-menu [isLogged]="isLogged" [user]="user" (userLogged)="fetchUser($event)"
+      (userUnlogged)="unsetUser()"></app-menu>
+
+  </div>
+
+  <div class="hero-body main">
+
+    <router-outlet></router-outlet>
+  </div>
+
+  <div class="hero-foot">
+    <div class="content has-text-centered">
+      <p>
+        <strong>Biblio</strong> by <a href="https://github.com/sebastienPiret">Sébastien Piret</a>. This site was
+        designed for Integration and Developpment Project:  a course from IPAM's bachelor in IT.
+        <br>All right reserved</p>
+    </div>
+  </div>
+</section>

@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {LivreData} from '../../data/livre-data';
 import {ProjectService} from '../../service/project.service';
-import {AuteurData} from '../../data/auteur-data';
-import {Restangular} from 'ngx-restangular';
+import {AuthentificationService} from '../../service/auth/authentification.service';
 
 @Component({
   selector: 'app-home',
@@ -11,22 +10,25 @@ import {Restangular} from 'ngx-restangular';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  livres: Array<LivreData>;
-  auteurs: Array<AuteurData>;
+  livres = new Array<LivreData>();
   selected: boolean;
   selectedBook: LivreData;
+  isLogged: boolean;
 
-  constructor(private route: ActivatedRoute, private projectService: ProjectService, private restangular: Restangular) {
-    this.livres = new Array<LivreData>();
+  constructor(private route: ActivatedRoute, private projectService: ProjectService, private auth: AuthentificationService) {
+    // this.livres = new Array<LivreData>();
     this.selected = false;
   }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      this.fetchBooks();
-    }, error => {
-      console.log(error);
-    });
+    if (this.livres.length === 0) {
+      this.route.params.subscribe(params => {
+        this.fetchBooks();
+      }, error => {
+        console.log(error);
+      });
+    }
+
   }
 
   private fetchBooks() {

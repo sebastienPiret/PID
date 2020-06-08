@@ -1,6 +1,6 @@
-<p>home works!</p>
+
 <div class="columns is-multiline" *ngIf="!selected">
-  <app-book-listing class="column is-one-quarter" *ngFor="let livre of livres"  [livre]="livre"
+  <app-book-listing class="column is-one-third" *ngFor="let livre of livres"  [livre]="livre"
                     (selected)="displayBook($event)"></app-book-listing>
 </div>
 <div *ngIf="selected">

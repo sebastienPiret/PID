@@ -8,8 +8,8 @@ import {AuthentificationService} from '../../service/auth/authentification.servi
   styleUrls: ['./book-selected.component.scss']
 })
 export class BookSelectedComponent implements OnInit {
-  isLogged: boolean;
 
+  @Input() isLogged: boolean;
   @Input() selectedBook: LivreData;
 
   @Output() goBack = new EventEmitter<any>();

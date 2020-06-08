@@ -1,5 +1,33 @@
-<p>menu works!</p>
-<ul>
-  <li><a [routerLink]="['/home']">home</a> </li>
-  <app-login></app-login>
-</ul>
+<nav class="navbar">
+  <div class="container">
+    <div class="navbar-brand">
+      <a class="navbar-item" [routerLink]='["/"]'>
+        <p>Biblio</p>
+      </a>
+      <span class="navbar-burger burger" data-target="navbarMenuHeroA">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+    </div>
+    <div id="navbarMenuHeroA" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item" [routerLink]='["/"]'>
+          Home
+        </a>
+        <a *ngIf="isLogged && user" class="navbar-item" [routerLink]='["profil/", user.idEmprunteur]'>
+          Profil
+        </a>
+        <a *ngIf="isLogged" class="navbar-item">
+          Panier
+        </a>
+        <a *ngIf="!isLogged" class="navbar-item" [routerLink]='["register"]'>
+          S'enregistrer
+        </a>
+
+      </div>
+      <app-login class="navbar-item" [isLogged]="isLogged" (userLogged)="setUser($event)"
+        (userUnlogged)="unSetUser()"></app-login>
+    </div>
+  </div>
+</nav>

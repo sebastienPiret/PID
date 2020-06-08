@@ -1,0 +1,21 @@
+.tabs{
+
+  li{
+    //border: 1px solid lightgrey;
+    a{
+      color: black;
+
+    }
+
+    &.is-active{
+      a{
+        color: black;
+        background: #f1f1f1;
+      }
+
+    }
+  }
+
+
+
+}

@@ -1,0 +1,72 @@
+<div class="columns">
+  <div class="column is-half is-offset-one-quarter">
+
+    <form (ngSubmit)="updateUser()" #addForm="ngForm">
+
+      <div >
+        <p>Enregistrez-vous pour bénéficier de tous nos avantages!</p>
+        <div class="field">
+          <label class="label">Nom</label>
+          <div class="control">
+            <input class="input is-small" type="text" name="nom" placeholder="nom"
+                   required
+                   [(ngModel)]="admin.nom"
+                   [ngClass]="formControlInvalid(nom) ? 'is-danger' : ''"
+                   #nom="ngModel">
+          </div>
+          <p *ngIf="formControlInvalid(nom)" class="help is-danger">
+            Veuillez entrer votre nom
+          </p>
+        </div>
+
+        <div class="field">
+          <label class="label">Prenom</label>
+          <div class="control">
+            <input class="input is-small" name="prenom" type="text" placeholder="prenom"
+                   required
+                   [(ngModel)]="admin.prenom"
+                   [ngClass]="formControlInvalid(prenom) ? 'is-danger' : ''"
+                   #prenom="ngModel">
+          </div>
+          <p *ngIf="formControlInvalid(prenom)" class="help is-danger">
+            Veuillez entrer votre prenom
+          </p>
+        </div>
+
+        <div class="field">
+          <label class="label">Mail</label>
+          <div class="control">
+            <input class="input is-small" name="mail" type="email" placeholder="mail"
+                   required
+                   email
+                   [(ngModel)]="admin.mail"
+                   [ngClass]="formControlInvalid(mail) ? 'is-danger' : ''"
+                   #mail="ngModel">
+          </div>
+          <p *ngIf="formControlInvalid(mail)" class="help is-danger">
+            Veuillez entrer une adresse mail valide
+          </p>
+        </div>
+
+        <div class="field">
+          <label class="label">Mot de passe</label>
+          <div class="control">
+            <input class="input is-small" name="password" type="password" placeholder="password"
+                   required
+                   [(ngModel)]="admin.mdp"
+                   [ngClass]="formControlInvalid(password) ? 'is-danger' : ''"
+                   #password="ngModel">
+          </div>
+          <p *ngIf="formControlInvalid(password)" class="help is-danger">
+            Veuillez entrer un mot de passe
+          </p>
+        </div>
+
+        <button [disabled]="!addForm.form.valid" type="submit"
+                class="button is-info">Valider</button>
+      </div>
+
+    </form>
+  </div>
+
+</div>

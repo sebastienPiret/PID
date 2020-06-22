@@ -7,6 +7,10 @@ import {PageNotFoundComponent} from './component/page-not-found/page-not-found.c
 import {LayoutComponent} from './component/layout/layout.component';
 import {RegisterComponent} from './component/register/register.component';
 import {ProfilComponent} from './component/profil/profil.component';
+import {PanierComponent} from './component/panier/panier.component';
+import {AdminLoginComponent} from './component/admin/admin-login/admin-login.component';
+import {AdminLayoutComponent} from './component/admin/admin-layout/admin-layout.component';
+import {AdminInfoComponent} from './component/admin/admin-info/admin-info.component';
 
 const routes: Routes = [
   { path: '',
@@ -14,10 +18,18 @@ const routes: Routes = [
     children: [
       { path: 'home', component: HomeComponent },
       { path: 'register', component: RegisterComponent },
-      { path: 'profil/:idEmprunteur', component: ProfilComponent },
+      { path: 'profil', component: ProfilComponent },
+      { path: 'panier', component: PanierComponent },
       { path: '', component: HomeComponent }
     ]
-
+  },
+  { path: 'admin',
+    component: AdminLayoutComponent,
+    children: [
+      { path: 'login', component: AdminLoginComponent},
+      { path: 'info', component: AdminInfoComponent},
+      { path: '', component: AdminLoginComponent }
+    ]
   },
   { path: '**', component: PageNotFoundComponent }
 

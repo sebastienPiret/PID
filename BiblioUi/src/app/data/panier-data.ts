@@ -5,6 +5,6 @@ export interface PanierData {
   idPanier: number;
   cotisation?: number;
   amende?: number;
-  exemplaire?: Array<ExemplaireData>;
-  emprunteur: EmprunteurData;
+  exemplaire?: string;
+  emprunteurById: string;
 }

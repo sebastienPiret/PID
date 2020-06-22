@@ -1,4 +1,34 @@
 <button class="button is-small is-primary" (click)="goBackToList()">Go back</button>
 <h5>{{selectedBook.titre}}</h5>
-<p *ngIf="isLogged">user loggé</p>
-<p *ngIf="!isLogged">user pas loggé</p>
+
+<p> exemplaire disponible:</p>
+<div *ngIf="exemplaireOf && !isInPanier">
+  <div *ngFor="let exemplaire of exemplaireOf">
+    <div *ngIf="exemplaire.bibliotheque">
+      <p>{{exemplaire.bibliotheque.nom}} : {{exemplaire.enStock}} </p>
+      <div *ngIf="isLogged">
+
+        <div *ngIf="exemplaire.enStock">
+          <div *ngIf="isLoan; else elseBlock">Vous louez actuellement ce livre</div>
+          <ng-template #elseBlock><button (click)="loan(exemplaire.idExemplaire)"> Louer</button></ng-template>
+        </div>
+        <p *ngIf="!exemplaire.enStock"><button> Réserver</button></p>
+      </div>
+      <div *ngIf="!isLogged">
+        <p>Vous devez être loggé si vous voulez réserver ce livre</p>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+<div *ngIf="isInPanier && isLogged">
+  <p>Ce livre est déjà dans votre panier</p>
+</div>
+
+<div *ngIf="exemplaireOf && exemplaireOf.length === 0">
+  <p>Il n'y a pour le moment aucun exemplaire de disponible.</p>
+</div>
+
+
+

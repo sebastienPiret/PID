@@ -16,7 +16,7 @@ export interface EmprunteurData {
   role: string;
   mail: string;
   enabled: boolean;
-  panier?: PanierData;
+  panier?: Array<PanierData>;
   adresse?: AdresseData;
   question?: Array<QuestionData>;
   avis?: Array<AvisData>;

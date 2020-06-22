@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {AuthentificationService} from '../../service/auth/authentification.service';
 import {FormBuilder} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
+import {UserService} from '../../service/user.service';
 
 @Component({
   selector: 'app-login',
@@ -12,20 +13,21 @@ export class LoginComponent implements OnInit {
   login;
   token;
   logged = false;
-  @Input() isLogged: boolean;
+  isLogged: boolean;
 
-  @Output() userLogged = new EventEmitter<string>();
-  @Output() userUnlogged = new EventEmitter<boolean>();
 
   loginForm = this.fb.group({
     mail: [],
     password: []
   });
 
-  constructor(private authService: AuthentificationService, private fb: FormBuilder, private route: Router) { }
+  constructor(private authService: AuthentificationService, private fb: FormBuilder,
+              private route: Router, private userService: UserService) { }
 
   ngOnInit(): void {
-
+    this.authService.sharedMessage.subscribe( message => {
+      this.isLogged = message;
+    });
   }
 
   onSubmit() {
@@ -34,7 +36,8 @@ export class LoginComponent implements OnInit {
         this.login = this.authService.getAuthenticatedUser();
         this.token = this.authService.getAuthenticatedToken();
         this.logged = true;
-        this.userLogged.emit(this.login);
+        this.authService.nextMessage(true);
+        this.fetchUser(this.login);
       }
     );
   }
@@ -44,7 +47,15 @@ export class LoginComponent implements OnInit {
     this.login = this.authService.getAuthenticatedUser();
     this.token = this.authService.getAuthenticatedToken();
     this.logged = false;
-    this.userUnlogged.emit();
+    this.authService.nextMessage(false);
+    this.authService.nextUserMessage(null);
     this.route.navigate(['/']);
+  }
+
+  private fetchUser(userMail: string) {
+    this.userService.userByMail(userMail).subscribe(data => {
+      console.log(data);
+      this.authService.nextUserMessage(data);
+    });
   }
 }

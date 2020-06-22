@@ -8,10 +8,13 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
+@IdClass(PaiementId.class)
 @Table(name="paiement", schema = "biblio")
 public class Paiement implements Serializable {
-    private int idEmprunteur;
-    private int idBibliotheque;
+
+     long idEmprunteur;
+
+     int idBibliotheque;
     @PastOrPresent(message = "La date doit être valide")
     private Date dateCoti;
     private short enOrdreCoti;
@@ -22,13 +25,14 @@ public class Paiement implements Serializable {
     private Emprunteur emprunteurByIdEmprunteur;
     private Bibliotheque biblioByIdBibliotheque;
 
+    /*
     @Id
     @Column(name = "id_emprunteur", nullable = false)
-    public int getIdEmprunteur() {
+    public long getIdEmprunteur() {
         return idEmprunteur;
     }
 
-    public void setIdEmprunteur(int idEmprunteur) {
+    public void setIdEmprunteur(long idEmprunteur) {
         this.idEmprunteur = idEmprunteur;
     }
 
@@ -41,6 +45,8 @@ public class Paiement implements Serializable {
     public void setIdBibliotheque(int idBibliotheque) {
         this.idBibliotheque = idBibliotheque;
     }
+
+     */
 
     @Basic
     @Temporal(TemporalType.DATE)
@@ -103,6 +109,7 @@ public class Paiement implements Serializable {
 
     @Override
     public int hashCode() {
+        /*
         int result = idEmprunteur;
         result = 31 * result + idBibliotheque;
         result = 31 * result + (dateCoti != null ? dateCoti.hashCode() : 0);
@@ -110,8 +117,12 @@ public class Paiement implements Serializable {
         result = 31 * result + (amende != null ? amende.hashCode() : 0);
         result = 31 * result + (montantAmende != null ? montantAmende.hashCode() : 0);
         return result;
+
+         */
+        return 0;
     }
 
+    @Id
     @ManyToOne
     @JoinColumn(name = "id_emprunteur", referencedColumnName = "id_emprunteur", nullable = false)
     public Emprunteur getEmprunteurByIdEmprunteur() {
@@ -122,6 +133,7 @@ public class Paiement implements Serializable {
         this.emprunteurByIdEmprunteur = emprunteurByIdEmprunteur;
     }
 
+    @Id
     @ManyToOne
     @JoinColumn(name = "id_bibliotheque", referencedColumnName = "id_bibliotheque", nullable = false)
     public Bibliotheque getBiblioByIdBibliotheque() {

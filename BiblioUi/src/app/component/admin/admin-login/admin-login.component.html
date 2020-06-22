@@ -1,0 +1,27 @@
+<div *ngIf="!isLogged" [formGroup]="loginForm"  class="form">
+
+  <div class="field ">
+    <p class="control  has-icons-left">
+      <input class="input is-small" type="email" placeholder="Mail" formControlName="mail">
+      <span class="icon is-small is-left">
+        <i class="fa fa-envelope"></i>
+      </span>
+    </p>
+  </div>
+  <div class="field">
+    <p class="control is-expanded has-icons-left">
+      <input class="input is-success is-small" type="password" placeholder="Password" formControlName="password">
+      <span class="icon is-small is-left">
+        <i class="fa fa-envelope"></i>
+      </span>
+    </p>
+  </div>
+
+  <div class="control submit">
+    <button type="submit" class="button is-primary is-small" (click)="onSubmit()">
+      Login
+    </button>
+  </div>
+
+</div>
+

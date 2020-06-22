@@ -27,17 +27,20 @@ public class Emprunteur implements UserDetails {
     private String role = "USER";
 
 
-    @JsonIgnore
+
+
     private Collection<Avis> avisByIdEmprunteur;
-    @JsonIgnore
+
     private Collection<Emprunt> empruntsByIdEmprunteur;
     private Adresse adresseByIdAdresse;
-    @JsonIgnore
+
     private Collection<Exemplaire> exemplairesByIdEmprunteur;
-    @JsonIgnore
+
     private Collection<Paiement> paiementsByIdEmprunteur;
-    @JsonIgnore
+
     private Collection<Question> questionsByIdEmprunteur;
+
+    private Collection<Panier> panier;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -205,6 +208,15 @@ public class Emprunteur implements UserDetails {
         this.questionsByIdEmprunteur = questionsByIdEmprunteur;
     }
 
+    @OneToMany(mappedBy = "emprunteurById")
+    public Collection<Panier> getPanier() {
+        return panier;
+    }
+
+    public void setPanier(Collection<Panier> panier) {
+        this.panier = panier;
+    }
+
     @Override
     @Transient
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -256,15 +268,5 @@ public class Emprunteur implements UserDetails {
         //this.role = role;
     }
 
-    private Panier panier;
 
-    @OneToOne
-    @JoinColumn(name= "panier", referencedColumnName = "id_panier")
-    public Panier getPanier() {
-        return panier;
-    }
-
-    public void setPanier(Panier panier) {
-        this.panier = panier;
-    }
 }

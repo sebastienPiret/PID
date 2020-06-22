@@ -44,7 +44,8 @@ public class Panier {
         this.amende = amende;
     }
 
-    @OneToOne(mappedBy = "panier")
+    @ManyToOne()
+    @JoinColumn(name = "emprunteurById", referencedColumnName = "id_emprunteur", nullable = false)
     public Emprunteur getEmprunteurById() {
         return emprunteurById;
     }
@@ -54,11 +55,8 @@ public class Panier {
     }
 
 
-
-
-
     @OneToOne()
-    @JoinColumn(name = "id_panier", referencedColumnName = "id_exemplaire", nullable = false)
+    @JoinColumn(name = "id_exemplaire", referencedColumnName = "id_exemplaire", nullable = false)
     public Exemplaire getExemplaire() {
         return exemplaire;
     }

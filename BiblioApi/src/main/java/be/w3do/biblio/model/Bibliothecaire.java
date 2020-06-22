@@ -8,7 +8,7 @@ import java.util.Collection;
 @Entity
 @Table(name="bibliothecaire", schema = "biblio")
 public class Bibliothecaire {
-    private long idBibliothecaire;
+    private int idBibliothecaire;
     @NotBlank(message = "ne peut pas être vide")
     private String nom;
     private String prenom;
@@ -26,11 +26,11 @@ public class Bibliothecaire {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_bibliothecaire", nullable = false)
-    public long getIdBibliothecaire() {
+    public int getIdBibliothecaire() {
         return idBibliothecaire;
     }
 
-    public void setIdBibliothecaire(long idBibliothecaire) {
+    public void setIdBibliothecaire(int idBibliothecaire) {
         this.idBibliothecaire = idBibliothecaire;
     }
 

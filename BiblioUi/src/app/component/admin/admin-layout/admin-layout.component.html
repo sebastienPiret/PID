@@ -1,6 +1,6 @@
 <section class="hero is-info is-bold ">
-  <div class="hero-head is-fluid">
-    <app-menu></app-menu>
+  <div class="hero-head is-fluid" *ngIf="isLogged">
+    <app-admin-menu></app-admin-menu>
 
   </div>
 

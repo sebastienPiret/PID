@@ -8,7 +8,7 @@ import java.util.Optional;
 
 
 @RepositoryRestResource(collectionResourceRel = "bibliothecaires", path = "bibliothecaires")
-public interface BibliothecaireRepository extends JpaRepository<Bibliothecaire, Long> {
+public interface BibliothecaireRepository extends JpaRepository<Bibliothecaire, Integer> {
 
     Optional<Bibliothecaire> findByMail(String mail);
 }

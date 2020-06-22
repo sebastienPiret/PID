@@ -17,6 +17,13 @@ import {PageNotFoundComponent} from './component/page-not-found/page-not-found.c
 import { RegisterComponent } from './component/register/register.component';
 import { ProfilComponent } from './component/profil/profil.component';
 import { CoordonneeComponent } from './component/profil/coordonnee/coordonnee.component';
+import { PanierComponent } from './component/panier/panier.component';
+import { AdminLoginComponent } from './component/admin/admin-login/admin-login.component';
+import { AdminLayoutComponent } from './component/admin/admin-layout/admin-layout.component';
+import { AdminMenuComponent } from './component/admin/admin-menu/admin-menu.component';
+import { AdminInfoComponent } from './component/admin/admin-info/admin-info.component';
+import { AdminCoordonneeComponent } from './component/admin/admin-info/admin-coordonnee/admin-coordonnee.component';
+import { AdminEmpruntComponent } from './component/admin/admin-info/admin-emprunt/admin-emprunt.component';
 
 export function RestAngularConfigFactory(RestangularProvider) {
   RestangularProvider.setBaseUrl('http://localhost:8080');
@@ -50,7 +57,14 @@ export function RestAngularConfigFactory(RestangularProvider) {
     LayoutComponent,
     RegisterComponent,
     ProfilComponent,
-    CoordonneeComponent
+    CoordonneeComponent,
+    PanierComponent,
+    AdminLoginComponent,
+    AdminLayoutComponent,
+    AdminMenuComponent,
+    AdminInfoComponent,
+    AdminCoordonneeComponent,
+    AdminEmpruntComponent
   ],
   imports: [
     BrowserModule,

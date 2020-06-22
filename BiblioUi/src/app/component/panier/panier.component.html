@@ -1,0 +1,20 @@
+<p>panier works!</p>
+<div *ngIf="userPanier">
+  <div *ngFor="let panier of userPanier">
+    <p>{{panier.amende}}</p>
+    <p>{{panier.cotisation}}</p>
+    <div *ngIf="exemplaire">
+      <div *ngFor="let ex of exemplaire">
+        <p>{{ex.bibliotheque}}</p>
+        <p>{{ex.edition}}</p>
+      </div>
+    </div>
+
+
+  </div>
+  <button class="button" (click)="rent()"></button>
+</div>
+<div *ngIf="!userPanier">
+  <p>Votre panier est vide</p>
+</div>
+

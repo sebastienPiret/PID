@@ -5,6 +5,7 @@ export interface EmpruntData {
   idEmprunt: number;
   dateEmprunt: string;
   dateRetour: string;
-  emprunteur: EmprunteurData;
-  exemplaire: Array<ExemplaireData>;
+  emprunteurByIdEmprunteur: string;
+  exemplairesByIdEmprunt: string;
+  // exemplareArr: Array<string>;
 }

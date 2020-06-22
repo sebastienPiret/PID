@@ -15,19 +15,18 @@
         <a class="navbar-item" [routerLink]='["/"]'>
           Home
         </a>
-        <a *ngIf="isLogged && user" class="navbar-item" [routerLink]='["profil/", user.idEmprunteur]'>
+        <a *ngIf="isLogged" class="navbar-item" [routerLink]='["/profil"]'>
           Profil
         </a>
-        <a *ngIf="isLogged" class="navbar-item">
+        <a *ngIf="isLogged" class="navbar-item" [routerLink]='["/panier"]'>
           Panier
         </a>
-        <a *ngIf="!isLogged" class="navbar-item" [routerLink]='["register"]'>
+        <a *ngIf="!isLogged" class="navbar-item" [routerLink]='["/register"]'>
           S'enregistrer
         </a>
 
       </div>
-      <app-login class="navbar-item" [isLogged]="isLogged" (userLogged)="setUser($event)"
-        (userUnlogged)="unSetUser()"></app-login>
+      <app-login class="navbar-item"></app-login>
     </div>
   </div>
 </nav>

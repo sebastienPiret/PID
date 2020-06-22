@@ -1,21 +1,18 @@
 package be.w3do.biblio.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.Future;
-import javax.validation.constraints.FutureOrPresent;
-import java.util.Date;
-import java.util.Collection;
+import java.util.*;
 
 @Entity
 @Table(name="emprunt", schema = "biblio")
 public class Emprunt {
     private int idEmprunt;
-    @FutureOrPresent(message = "La date doit être valide")
-    private Date dateEmprunt;
-    @Future(message = "La date doit être valide")
-    private Date dateRetour;
+    private String dateEmprunt;
+    private String dateRetour;
     private Emprunteur emprunteurByIdEmprunteur;
-    private Collection<Exemplaire> exemplairesByIdEmprunt;
+    private short isActif;
+    private Exemplaire exemplairesByIdEmprunt;
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,25 +26,35 @@ public class Emprunt {
     }
 
     @Basic
-    @Temporal(TemporalType.DATE)
     @Column(name = "date_emprunt", nullable = false)
-    public Date getDateEmprunt() {
+    public String getDateEmprunt() {
         return dateEmprunt;
     }
 
-    public void setDateEmprunt(Date dateEmprunt) {
+    public void setDateEmprunt(String dateEmprunt) {
+
         this.dateEmprunt = dateEmprunt;
     }
 
     @Basic
-    @Temporal(TemporalType.DATE)
     @Column(name = "date_retour", nullable = false)
-    public Date getDateRetour() {
+    public String getDateRetour() {
         return dateRetour;
     }
 
-    public void setDateRetour(Date dateRetour) {
+    public void setDateRetour(String dateRetour) {
+
         this.dateRetour = dateRetour;
+    }
+
+    @Basic
+    @Column(name = "isActif", nullable = false)
+    public short getIsActif() {
+        return isActif;
+    }
+
+    public void setIsActif(short isActif) {
+        this.isActif = isActif;
     }
 
     @Override
@@ -73,7 +80,7 @@ public class Emprunt {
     }
 
     @ManyToOne
-    @JoinColumn(name = "id_emprunteur", referencedColumnName = "id_emprunteur", nullable = false)
+    @JoinColumn(name = "emprunteurByIdEmprunteur", referencedColumnName = "id_emprunteur", nullable = false)
     public Emprunteur getEmprunteurByIdEmprunteur() {
         return emprunteurByIdEmprunteur;
     }
@@ -82,12 +89,18 @@ public class Emprunt {
         this.emprunteurByIdEmprunteur = emprunteurByIdEmprunteur;
     }
 
-    @OneToMany(mappedBy = "empruntByIdEmprunt")
-    public Collection<Exemplaire> getExemplairesByIdEmprunt() {
+    @OneToOne()
+    @JoinColumn(name = "exemplairesByIdEmprunt", referencedColumnName = "id_exemplaire", nullable = false)
+    public Exemplaire getExemplairesByIdEmprunt() {
+        System.out.println("get exemplaire");
+        System.out.println(exemplairesByIdEmprunt);
         return exemplairesByIdEmprunt;
     }
 
-    public void setExemplairesByIdEmprunt(Collection<Exemplaire> exemplairesByIdEmprunt) {
+    public void setExemplairesByIdEmprunt(Exemplaire exemplairesByIdEmprunt) {
+        System.out.println("set exemplaire");
+        System.out.println(exemplairesByIdEmprunt);
         this.exemplairesByIdEmprunt = exemplairesByIdEmprunt;
     }
+
 }

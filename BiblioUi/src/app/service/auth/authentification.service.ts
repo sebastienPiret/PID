@@ -2,7 +2,9 @@ import {EventEmitter, Injectable} from '@angular/core';
 import { API_URL } from '../../app.constants';
 import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
-import {Observable} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
+import {EmprunteurData} from '../../data/emprunteur-data';
+import {BibliothecaireData} from '../../data/bibliothecaire-data';
 
 export const TOKEN = 'token';
 export const AUTHENTICATED_USER = 'authenticatedUser';
@@ -11,8 +13,39 @@ export const AUTHENTICATED_USER = 'authenticatedUser';
   providedIn: 'root'
 })
 export class AuthentificationService {
+  private logged = false;
+  private message = new BehaviorSubject(this.logged);
+  sharedMessage = this.message.asObservable();
+
+  private loggedAdmin = false;
+  private messageAdmin = new BehaviorSubject(this.loggedAdmin);
+  sharedMessageAdmin = this.messageAdmin.asObservable();
+
+  private user: EmprunteurData = null;
+  private userMessage = new BehaviorSubject(this.user);
+  userSharedMessage = this.userMessage.asObservable();
+
+  private admin: BibliothecaireData = null;
+  private adminMessage = new BehaviorSubject(this.admin);
+  adminSharedMessage = this.adminMessage.asObservable();
 
   constructor(private http: HttpClient) { }
+
+  nextMessage(logged: boolean) {
+    this.message.next(logged);
+  }
+
+  nextUserMessage(user: EmprunteurData) {
+    this.userMessage.next(user);
+  }
+
+  nextMessageAdmin(logged: boolean) {
+    this.messageAdmin.next(logged);
+  }
+
+  nextAdminMessage(admin: BibliothecaireData) {
+    this.adminMessage.next(admin);
+  }
 
   getAuthenticatedUser() {
     return sessionStorage.getItem(AUTHENTICATED_USER);
@@ -24,7 +57,6 @@ export class AuthentificationService {
 
   isUserLoggedIn() {
     const user = sessionStorage.getItem(AUTHENTICATED_USER);
-
     return !(user === null);
   }
 

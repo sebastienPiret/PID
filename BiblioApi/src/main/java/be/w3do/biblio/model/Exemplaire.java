@@ -20,8 +20,7 @@ public class Exemplaire {
     private Edition editionByIdEdition;
     private Bibliotheque bibliothequeByIdBibliotheque;
     private Emprunteur emprunteurByIdEmprunteur;
-    private Emprunt empruntByIdEmprunt;
-
+    private Emprunt empruntById;
 
     private Panier panierById;
 
@@ -86,16 +85,6 @@ public class Exemplaire {
         this.actif = actif;
     }
 
-    @OneToOne(mappedBy = "exemplaire")
-    public Panier getPanierById() {
-        return panierById;
-    }
-
-    public void setPanierById(Panier panierById) {
-        this.panierById = panierById;
-    }
-
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -154,13 +143,26 @@ public class Exemplaire {
         this.emprunteurByIdEmprunteur = emprunteurByIdEmprunteur;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "id_emprunt", referencedColumnName = "id_emprunt")
-    public Emprunt getEmpruntByIdEmprunt() {
-        return empruntByIdEmprunt;
+    @OneToOne(mappedBy = "exemplaire")
+    public Panier getPanierById() {
+        return panierById;
     }
 
-    public void setEmpruntByIdEmprunt(Emprunt empruntByIdEmprunt) {
-        this.empruntByIdEmprunt = empruntByIdEmprunt;
+    public void setPanierById(Panier panierById) {
+        this.panierById = panierById;
+    }
+
+    @OneToOne(mappedBy = "exemplairesByIdEmprunt")
+    public Emprunt getEmpruntById() {
+        System.out.println("getting emprunt to exemplaire");
+        System.out.println(empruntById);
+        return empruntById;
+    }
+
+    public void setEmpruntById(Emprunt empruntById) {
+        System.out.println("adding emprunt to exemplaire");
+        System.out.println(empruntById);
+
+        this.empruntById = empruntById;
     }
 }

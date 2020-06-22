@@ -1,32 +1,29 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {EmprunteurData} from '../../data/emprunteur-data';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {AuthentificationService} from '../../service/auth/authentification.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss']
 })
-export class MenuComponent implements OnInit {
+export class MenuComponent implements OnInit, OnDestroy {
 
-  @Input() user: EmprunteurData;
-  @Input() isLogged: boolean;
+  isLogged: boolean;
 
-  @Output() userLogged = new EventEmitter<string>();
-  @Output() userUnlogged = new EventEmitter<boolean>();
+  constructor(private auth: AuthentificationService, private route: Router) {
 
+  }
 
-  constructor() { }
+  ngOnDestroy(): void {
+    // this.userSubscription.unsubscribe();
+  }
 
   ngOnInit(): void {
+    this.auth.sharedMessage.subscribe( message => {
+      this.isLogged = message;
+    });
+
   }
 
-  setUser(login: string) {
-    this.userLogged.emit(login);
-    this.isLogged = true;
-  }
-
-  unSetUser() {
-    this.userUnlogged.emit();
-    this.isLogged = false;
-  }
 }

@@ -1,10 +1,12 @@
 <h2>Emprunts en cours</h2>
-<div *ngIf="emprunts">
+<div *ngIf="emprunts" class="emprunt">
   <div *ngFor="let emprunt of emprunts">
-    <p>{{emprunt.exemplairesByIdEmprunt}}</p>
-    <p>{{emprunt.emprunteurByIdEmprunteur}}</p>
-    <p>{{emprunt.dateEmprunt}}</p>
-    <p>{{emprunt.dateRetour}}</p>
-    <button class="button" (click)="resetEmprunt(emprunt.idEmprunt)">Remettre</button>
+    <div *ngIf="emprunt.emprunteur && emprunt.exemplaire && emprunt.isActif == 1">
+      <p>Emprunteur: {{emprunt.emprunteur.nom}} {{emprunt.emprunteur.prenom}}</p>
+      <p *ngIf="emprunt.exemplaire.edition">ISBN: {{emprunt.exemplaire.edition.isbn}}</p>
+    </div>
+    <p>date d'emprunt: {{emprunt.dateEmprunt}}</p>
+    <p>date de retour programmée: {{emprunt.dateRetour}}</p>
+    <button class="button" (click)="resetEmprunt(emprunt, emprunt.exemplaire)">Remettre</button>
   </div>
 </div>

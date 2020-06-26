@@ -9,7 +9,7 @@ export interface ExemplaireData {
   etat: string;
   prixAchat: number;
   format: string;
-  enStock: boolean;
+  enStock: number;
   actif: boolean;
   emprunteur?: EmprunteurData;
   bibliotheque: BibliothequeData;

@@ -3,6 +3,7 @@ import {BibliothecaireData} from '../../../../data/bibliothecaire-data';
 import {Utils} from '../../../../utils/utils';
 import {NgForm} from '@angular/forms';
 import {AdminService} from '../../../../service/admin.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-admin-coordonnee',
@@ -16,10 +17,12 @@ export class AdminCoordonneeComponent implements OnInit {
 
   @ViewChild('coordForm', { static: true }) coordForm: NgForm;
 
-  constructor(private changeDetectorRef: ChangeDetectorRef, private userService: AdminService) { }
+  constructor(private changeDetectorRef: ChangeDetectorRef, private userService: AdminService, private route: Router) { }
 
   ngOnInit(): void {
-    console.log(this.admin);
+    if (this.admin === null) {
+      this.route.navigate(['admin']);
+    }
     this.initForm();
   }
 

@@ -54,7 +54,6 @@ export class LoginComponent implements OnInit {
 
   private fetchUser(userMail: string) {
     this.userService.userByMail(userMail).subscribe(data => {
-      console.log(data);
       this.authService.nextUserMessage(data);
     });
   }

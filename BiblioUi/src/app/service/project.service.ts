@@ -25,10 +25,10 @@ export class ProjectService {
     return this.http.get<any>(url).pipe(map(data => data._embedded.exemplaires));
   }
 
-  exemplaireByEmprunt(idEmprunt: number): Observable<Array<ExemplaireData>> {
+  exemplaireByEmprunt(idEmprunt: number): Observable<ExemplaireData> {
     const url = environment.webServiceUrl + '/emprunts/' + idEmprunt + '/exemplairesByIdEmprunt';
 
-    return this.http.get<any>(url).pipe(map(data => data._embedded.exemplaires));
+    return this.http.get<any>(url);
   }
 
   emprunt(): Observable<Array<EmpruntData>> {
@@ -37,10 +37,10 @@ export class ProjectService {
     return this.http.get<any>(url).pipe(map(data => data._embedded.emprunts));
   }
 
-  deleteEmprunt(idEmprunt: number): Observable<{}> {
-    const url = environment.webServiceUrl + '/emprunts/' + idEmprunt;
+  deleteEmprunt(emprunt: EmpruntData): Observable<{}> {
+    const url = environment.webServiceUrl + '/emprunts/' + emprunt.idEmprunt;
 
-    return this.http.delete(url);
+    return this.http.put(url, emprunt);
   }
 
 
@@ -95,22 +95,71 @@ export class ProjectService {
     return this.http.post(url, panier);
   }
 
-  rent(emprunt: EmpruntData) {
+  cancelPanier(panierId: number): Observable<{}> {
+    const url = environment.webServiceUrl + '/paniers/' + panierId;
+
+    return this.http.delete(url);
+  }
+
+  rent(emprunt: EmpruntData): Observable<any> {
     console.log(emprunt);
     const url = environment.webServiceUrl + '/emprunts';
 
     return this.http.post(url, emprunt);
   }
 
-  biblioOfExemplaire(idExemplaire: number) {
+  biblioOfExemplaire(idExemplaire: number): Observable<any> {
     const url = environment.webServiceUrl + '/exemplaires/' + idExemplaire + '/bibliothequeByIdBibliotheque';
 
     return this.http.get<any>(url);
   }
 
-  exemplaire() {
+  exemplaire(): Observable<any> {
     const url = environment.webServiceUrl + '/exemplaires/';
 
     return this.http.get<any>(url);
+  }
+
+  panierByUserId(id: string): Observable<any> {
+    const url = environment.webServiceUrl + '/emprunteurs/' + id + '/panier';
+
+    return this.http.get<any>(url).pipe(map(data => data._embedded.paniers));
+  }
+
+  exemplaireByPanier(id: string): Observable<any>  {
+    const url = environment.webServiceUrl + '/paniers/' + id + '/exemplaire';
+
+    return this.http.get<any>(url);
+  }
+
+  editionByExemplaire(idExemplaire: string) {
+    const url = environment.webServiceUrl + '/exemplaires/' + idExemplaire + '/editionByIdEdition';
+
+    return this.http.get<any>(url);
+  }
+
+  livreByEdition(idEdition: string) {
+    const url = environment.webServiceUrl + '/editions/' + idEdition + '/livreByIdLivre';
+
+    return this.http.get<any>(url);
+  }
+
+  setExemplaireInOut(exemplaire: ExemplaireData): Observable<any> {
+    const url = environment.webServiceUrl + '/exemplaires/' + exemplaire.idExemplaire;
+
+    return this.http.put(url, exemplaire);
+  }
+
+  emprunteurByEmprunt(idEmprunt: number): Observable<any> {
+    const url = environment.webServiceUrl + '/emprunts/' + idEmprunt + '/emprunteurByIdEmprunteur';
+
+    return this.http.get<any>(url);
+  }
+
+  empruntsByUser(idEmprunteur: number): Observable<Array<EmpruntData>> {
+    const url = environment.webServiceUrl
+      + '/emprunts/search/findByEmprunteurByIdEmprunteur?emprunteurByIdEmprunteur=' + idEmprunteur;
+
+    return this.http.get<any>(url).pipe(map(data => data._embedded.emprunts));
   }
 }

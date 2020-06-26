@@ -24,6 +24,7 @@ import { AdminMenuComponent } from './component/admin/admin-menu/admin-menu.comp
 import { AdminInfoComponent } from './component/admin/admin-info/admin-info.component';
 import { AdminCoordonneeComponent } from './component/admin/admin-info/admin-coordonnee/admin-coordonnee.component';
 import { AdminEmpruntComponent } from './component/admin/admin-info/admin-emprunt/admin-emprunt.component';
+import { CommandeComponent } from './component/profil/commande/commande.component';
 
 export function RestAngularConfigFactory(RestangularProvider) {
   RestangularProvider.setBaseUrl('http://localhost:8080');
@@ -64,7 +65,8 @@ export function RestAngularConfigFactory(RestangularProvider) {
     AdminMenuComponent,
     AdminInfoComponent,
     AdminCoordonneeComponent,
-    AdminEmpruntComponent
+    AdminEmpruntComponent,
+    CommandeComponent
   ],
   imports: [
     BrowserModule,

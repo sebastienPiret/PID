@@ -16,14 +16,13 @@ import {environment} from '../../../environments/environment';
 export class PanierComponent implements OnInit {
 
   user: EmprunteurData;
-  userPanier: Array<PanierData>;
+  userPanier: PanierData;
   exemplaire: ExemplaireData;
 
   private emprunt: EmpruntData;
 
   constructor(private auth: AuthentificationService, private userService: UserService,
               private projectService: ProjectService) {
-    //this.exemplaire = new Array<ExemplaireData>();
     this.emprunt = {} as EmpruntData;
   }
 
@@ -35,45 +34,56 @@ export class PanierComponent implements OnInit {
   }
 
   private fetchPanier(userId: string) {
-    this.userService.panierByUserId(userId).subscribe(data => {
-      console.log(data);
-      this.userPanier = data;
-      for (const panier of this.userPanier) {
-        this.userService.exemplaireByPanier(panier.idPanier).subscribe(ex => {
-          console.log(ex);
+    this.projectService.panierByUserId(userId).subscribe(data => {
+      if (data.length > 0) {
+        this.userPanier = data[0];
+        console.log(this.userPanier);
+        this.projectService.exemplaireByPanier(String(this.userPanier.idPanier)).subscribe(ex => {
           this.exemplaire = ex;
+          this.projectService.editionByExemplaire(String(this.exemplaire.idExemplaire)).subscribe(edition => {
+            this.exemplaire.edition = edition;
+            this.projectService.livreByEdition(String(this.exemplaire.edition.idEdition)).subscribe(livre => {
+              console.log(livre);
+              this.exemplaire.edition.livre = livre;
+            });
+          });
         });
       }
-      });
+    });
   }
 
-  rent() {
+  rent(idPanier: number) {
     this.emprunt.emprunteurByIdEmprunteur = environment.webServiceUrl + '/emprunteurs/' + this.user.idEmprunteur;
-    // this.emprunt.emprunteurByIdEmprunteur = this.user;
-    //this.emprunt.exemplairesByIdEmprunt = [];
-    //this.emprunt.exemplareArr = [];
 
-    this.emprunt.dateEmprunt = String(new Date().getDate());
-    this.emprunt.dateRetour = String(new Date().getDate() + 30);
+
+    this.emprunt.dateEmprunt = new Date().toDateString();
+    const dateT = new Date();
+    dateT.setDate(dateT.getDate() + 30);
+    this.emprunt.dateRetour = dateT.toDateString();
     this.emprunt.exemplairesByIdEmprunt = environment.webServiceUrl + '/exemplaires/' + this.exemplaire.idExemplaire;
-    /*
-    for (const ex of this.exemplaire) {
-      console.log(environment.webServiceUrl + '/exemplaires/' + ex.idExemplaire);
-      this.emprunt.exemplairesByIdEmprunt.push(environment.webServiceUrl + '/exemplaires/' + ex.idExemplaire);
-      //this.emprunt.exemplareArr.push(environment.webServiceUrl + '/exemplaires/' + ex.idExemplaire);
 
-    }
-
-     */
-    //console.log(this.emprunt.exemplareArr);
     this.projectService.rent(this.emprunt).subscribe(data => {
-      // this.fecthEmprunt();
+      this.cancelPanier(idPanier);
+      this.getExemplaireOutOfStock(this.exemplaire);
     });
   }
 
   private fecthEmprunt() {
     this.projectService.emprunt().subscribe(data => {
       console.log(data);
+    });
+  }
+
+  private cancelPanier(idPanier: number) {
+    this.projectService.cancelPanier(idPanier).subscribe(data => {
+      this.fetchPanier(String(this.user.idEmprunteur));
+    });
+  }
+
+  private getExemplaireOutOfStock(exemplaire: ExemplaireData) {
+    exemplaire.enStock = 0;
+    this.projectService.setExemplaireInOut(exemplaire).subscribe(data => {
+
     });
   }
 }

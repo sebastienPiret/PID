@@ -9,7 +9,7 @@ export interface EditionData {
   isbn?: string;
   image?: string;
   avis?: AvisData[];
-  livre?: LivreData[];
+  livre?: LivreData;
   exemplaire?: ExemplaireData[];
   editeur?: EditeurData[];
 }

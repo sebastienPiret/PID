@@ -10,7 +10,7 @@ public class Emprunt {
     private String dateEmprunt;
     private String dateRetour;
     private Emprunteur emprunteurByIdEmprunteur;
-    private short isActif;
+    private short isActif = 1;
     private Exemplaire exemplairesByIdEmprunt;
 
 
@@ -48,7 +48,7 @@ public class Emprunt {
     }
 
     @Basic
-    @Column(name = "isActif", nullable = false)
+    @Column(name = "isActif", nullable = false, columnDefinition = "integer default 1")
     public short getIsActif() {
         return isActif;
     }
@@ -92,14 +92,10 @@ public class Emprunt {
     @OneToOne()
     @JoinColumn(name = "exemplairesByIdEmprunt", referencedColumnName = "id_exemplaire", nullable = false)
     public Exemplaire getExemplairesByIdEmprunt() {
-        System.out.println("get exemplaire");
-        System.out.println(exemplairesByIdEmprunt);
         return exemplairesByIdEmprunt;
     }
 
     public void setExemplairesByIdEmprunt(Exemplaire exemplairesByIdEmprunt) {
-        System.out.println("set exemplaire");
-        System.out.println(exemplairesByIdEmprunt);
         this.exemplairesByIdEmprunt = exemplairesByIdEmprunt;
     }
 

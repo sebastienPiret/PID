@@ -13,7 +13,6 @@ export class BookListingComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-
   }
 
   select(livre: LivreData) {

@@ -154,15 +154,10 @@ public class Exemplaire {
 
     @OneToOne(mappedBy = "exemplairesByIdEmprunt")
     public Emprunt getEmpruntById() {
-        System.out.println("getting emprunt to exemplaire");
-        System.out.println(empruntById);
         return empruntById;
     }
 
     public void setEmpruntById(Emprunt empruntById) {
-        System.out.println("adding emprunt to exemplaire");
-        System.out.println(empruntById);
-
         this.empruntById = empruntById;
     }
 }

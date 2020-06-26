@@ -1,0 +1,20 @@
+
+<div *ngIf="emprunts">
+  <div *ngFor="let emprunt of emprunts">
+    <p>Emprunt en cours</p>
+    <ul *ngIf="emprunt.isActif === 1">
+      <li *ngIf="emprunt.exemplaire && emprunt.exemplaire.edition && emprunt.exemplaire.edition.livre">
+        <p>{{emprunt.exemplaire.edition.isbn}} : {{emprunt.exemplaire.edition.livre.titre}}</p>
+        <p>date de retour prévue: {{emprunt.dateRetour}}</p>
+      </li>
+    </ul>
+    <p>Emprunt terminé</p>
+    <ul *ngIf="emprunt.isActif === 0">
+      <li *ngIf="emprunt.exemplaire && emprunt.exemplaire.edition && emprunt.exemplaire.edition.livre">
+        <p>{{emprunt.exemplaire.edition.isbn}} : {{emprunt.exemplaire.edition.livre.titre}}</p>
+        <p>date d'emprunt: {{emprunt.dateEmprunt}}, date de remise: {{emprunt.dateRetour}}</p>
+      </li>
+    </ul>
+
+  </div>
+</div>

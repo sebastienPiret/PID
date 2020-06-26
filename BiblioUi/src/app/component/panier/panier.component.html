@@ -1,20 +1,16 @@
-<p>panier works!</p>
-<div *ngIf="userPanier">
-  <div *ngFor="let panier of userPanier">
-    <p>{{panier.amende}}</p>
-    <p>{{panier.cotisation}}</p>
-    <div *ngIf="exemplaire">
-      <div *ngFor="let ex of exemplaire">
-        <p>{{ex.bibliotheque}}</p>
-        <p>{{ex.edition}}</p>
-      </div>
-    </div>
 
-
-  </div>
-  <button class="button" (click)="rent()"></button>
+<div *ngIf="userPanier" class="panier">
+  <p>Vous souhaitez louer:</p>
+  <p *ngIf="exemplaire && exemplaire.edition && exemplaire.edition.livre">{{exemplaire.edition.livre.titre}}</p>
+  <div *ngIf="userPanier.amende; else elseBlock">Amende: {{userPanier.amende}}</div>
+  <ng-template #elseBlock><p>Vous n'avez pas d'amende à régler</p></ng-template>
+  <div *ngIf="userPanier.cotisation !== 0; else elseCoti">Cotisation: {{userPanier.cotisation}}</div>
+  <ng-template #elseCoti><p>Vous n'avez pas de cotisation à régler</p></ng-template>
+  <p class="total">Montant total de l'emprunt: 5€</p><br>
+  <button class="button is-primary" (click)="rent(userPanier.idPanier)">Effectuer le paiement</button>
 </div>
-<div *ngIf="!userPanier">
+
+<div *ngIf="!userPanier" class="panier">
   <p>Votre panier est vide</p>
 </div>
 

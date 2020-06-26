@@ -17,21 +17,19 @@ import {UserService} from '../../service/user.service';
 })
 export class BookSelectedComponent implements OnInit {
   exemplaireOf: Array<ExemplaireData>;
-  numExemplaire: number;
   isLoan = false;
-  private panier: PanierData;
-  private userPanier: Array<any>;
-
   isLogged: boolean;
   user: EmprunteurData;
+  isInPanier = false;
+
+  private panier: PanierData;
+  private userPanier: Array<any>;
 
   @Input() selectedBook: LivreData;
 
   @Output() goBack = new EventEmitter<any>();
-  isInPanier = false;
 
-  constructor(private auth: AuthentificationService, private projectService: ProjectService,
-              private userService: UserService) {
+  constructor(private auth: AuthentificationService, private projectService: ProjectService) {
     this.panier = {} as PanierData;
   }
 
@@ -59,8 +57,17 @@ export class BookSelectedComponent implements OnInit {
     this.fetchExemplaire();
   }
 
+  loan(idExemplaire: number) {
+    this.panier.emprunteurById = environment.webServiceUrl + '/emprunteurs/' + this.user.idEmprunteur;
+    const test = environment.webServiceUrl + '/exemplaires/' + idExemplaire;
+    this.panier.exemplaire = test;
+    this.projectService.loan(this.panier).subscribe(data => {
+      this.fetchPanier();
+    });
+  }
+
   private fetchPanier() {
-    this.userService.panierByUserId(String(this.user.idEmprunteur)).subscribe(data => {
+    this.projectService.panierByUserId(String(this.user.idEmprunteur)).subscribe(data => {
       console.log(data);
       this.userPanier = data;
       if (this.exemplaireOf && this.userPanier.length > 0) {
@@ -70,13 +77,10 @@ export class BookSelectedComponent implements OnInit {
           }
         }
       }
-
     });
   }
 
-
   private fetchExemplaire() {
-
     this.projectService.exemplaireByEdition(this.selectedBook.edition[0].idEdition).subscribe( data => {
       this.exemplaireOf = data;
       console.log(data);
@@ -89,46 +93,8 @@ export class BookSelectedComponent implements OnInit {
           }
         });
       }
-
-    });
-
-    /*
-    this.projectService.exemplaireByEdition(this.selectedBook.edition[0].idEdition).subscribe( data => {
-      this.exemplaireOf = data;
-      for (const num of data) {
-        if (num.enStock) {
-          this.numExemplaire += 1;
-        }
-      }
-      for (const emp of this.user.emprunt) {
-        for (const exe of emp.exemplaire) {
-          for (const ex of this.exemplaireOf) {
-            if (exe.idExemplaire === ex.idExemplaire) {
-              this.isLoan = true;
-            }
-          }
-        }
-      }
-    });
-
-     */
-  }
-
-  loan(idExemplaire: number) {
-    // this.panier.idPanier = Number(Utils.createUuid());
-    // this.panier.emprunteur = environment.webServiceUrl + '/emprunteurs/' + this.user.idEmprunteur;
-    this.panier.emprunteurById = environment.webServiceUrl + '/emprunteurs/' + this.user.idEmprunteur;
-    console.log(this.panier.emprunteurById);
-    const test = environment.webServiceUrl + '/exemplaires/' + idExemplaire;
-    console.log(this.panier);
-    // this.panier.exemplaire = [];
-    this.panier.exemplaire = test;
-    console.log(this.panier.exemplaire);
-    this.projectService.loan(this.panier).subscribe(data => {
-      this.fetchPanier();
     });
   }
-
 
   private fetchExemplaireOf() {
     this.projectService.exemplaire().subscribe(data => {

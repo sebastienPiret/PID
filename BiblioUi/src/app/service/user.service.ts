@@ -74,15 +74,4 @@ export class UserService {
     return this.http.get<any>(url);
   }
 
-  panierByUserId(id: string): Observable<Array<any>> {
-    const url = environment.webServiceUrl + '/emprunteurs/' + id + '/panier';
-
-    return this.http.get<any>(url).pipe(map(data => data._embedded.paniers));
-  }
-
-  exemplaireByPanier(id: number): Observable<any>  {
-    const url = environment.webServiceUrl + '/paniers/' + id + '/exemplaire';
-
-    return this.http.get<any>(url);
-  }
 }

@@ -23,6 +23,8 @@ avec les informations suivantes de connexions:
 * mdp: MyStrongPassword@
 * Le backup de la bdd est dans BiblioApi/img/file.bak
 
+Le projet nécessite un maven clean install niveau back-end, et un npm install niveau front end.
+
 Une fois le backend lancé (via fleche play avec BiblioApplication comme configuration),
 vous pouvez accéder à tous les liens via localhost:8080
 

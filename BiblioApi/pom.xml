@@ -17,7 +17,7 @@
 	<properties>
 		<main.basedir>${project.basedir}/..</main.basedir>
 		<jpa.version>2.2.2.RELEASE</jpa.version>
-		<web.version>2.2.2.RELEASE</web.version>
+		<web.version>2.5.12</web.version>
 		<dataRest.version>2.2.2.RELEASE</dataRest.version>
 		<hal.version>3.2.6.RELEASE</hal.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
